@@ -235,7 +235,7 @@ export default function VotingBoard() {
                         <Button
                           onClick={() => handleVote(theme.id)}
                           disabled={theme.is_closed}
-                          className={`flex items-center gap-2 ${!theme.is_closed ? 'bg-lime-400 hover:bg-lime-500 text-white' : ''}`}
+                          className={`flex items-center gap-2 ${!theme.is_closed ? 'bg-lime-500 hover:bg-lime-600 text-white' : 'bg-gray-300 text-gray-400'}`}
                         >
                           <Vote className="h-4 w-4" />
                           投票する
