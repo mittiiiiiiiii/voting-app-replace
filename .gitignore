@@ -47,3 +47,7 @@ next-env.d.ts
 *.next/
 *.next
 .next
+
+*/node_modules
+*.node_modules
+
