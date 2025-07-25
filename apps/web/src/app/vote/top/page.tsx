@@ -131,7 +131,7 @@ export default function VotingBoard() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-slate-800 mb-2">投票掲示板</h1>
-          <p className="text-slate-600">みんなで決めよう、みんなの意見を聞こう</p>
+          <p className="text-slate-800">みんなで決めよう、みんなの意見を聞こう</p>
         </div>
 
         <div className="max-w-6xl mx-auto">
@@ -139,8 +139,8 @@ export default function VotingBoard() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Filter className="h-5 w-5" />
-                フィルター・並び替え
+                <Filter className="h-5 w-5 text-slate-800"/>
+                <div className="text-slate-800">フィルター・並び替え</div>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -148,9 +148,9 @@ export default function VotingBoard() {
                 <div className="flex-1">
                   <Tabs value={filter} onValueChange={(value) => setFilter(value as typeof filter)}>
                     <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="all">すべて</TabsTrigger>
-                      <TabsTrigger value="in_progress">進行中</TabsTrigger>
-                      <TabsTrigger value="closed">終了済み</TabsTrigger>
+                      <TabsTrigger value="all" className="text-slate-800">すべて</TabsTrigger>
+                      <TabsTrigger value="in_progress" className="text-slate-800">進行中</TabsTrigger>
+                      <TabsTrigger value="closed" className="text-slate-800">終了済み</TabsTrigger>
                     </TabsList>
                   </Tabs>
                 </div>
@@ -159,7 +159,7 @@ export default function VotingBoard() {
                   <Button
                     variant={showMyThemes ? "default" : "outline"}
                     onClick={() => setShowMyThemes(!showMyThemes)}
-                    className="flex items-center gap-2"
+                    className={`flex items-center gap-2 ${showMyThemes ? 'text-slate-800' : 'text-white'}`}
                   >
                     <User className="h-4 w-4" />
                     自分の投稿
@@ -170,10 +170,10 @@ export default function VotingBoard() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="created_desc">作成日: 新しい順</SelectItem>
-                      <SelectItem value="created_asc">作成日: 古い順</SelectItem>
-                      <SelectItem value="deadline_asc">締切: 近い順</SelectItem>
-                      <SelectItem value="deadline_desc">締切: 遠い順</SelectItem>
+                      <SelectItem value="created_desc" className="text-slate-800">作成日: 新しい順</SelectItem>
+                      <SelectItem value="created_asc" className="text-slate-800">作成日: 古い順</SelectItem>
+                      <SelectItem value="deadline_asc" className="text-slate-800">締切: 近い順</SelectItem>
+                      <SelectItem value="deadline_desc" className="text-slate-800">締切: 遠い順</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -199,15 +199,15 @@ export default function VotingBoard() {
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <CardTitle className="text-xl mb-2">{theme.title}</CardTitle>
-                        <CardDescription className="text-base">{theme.description}</CardDescription>
+                        <CardTitle className="text-xl mb-2 text-slate-800">{theme.title}</CardTitle>
+                        <CardDescription className="text-base text-slate-700">{theme.description}</CardDescription>
                       </div>
                       <div className="flex flex-col items-end gap-2">
-                        <Badge variant={theme.is_closed ? "secondary" : "default"}>
+                        <Badge variant={theme.is_closed ? "secondary" : "default"} className="text-slate-800">
                           {theme.is_closed ? "終了済み" : "進行中"}
                         </Badge>
                         {theme.deadline && !theme.is_closed && isDeadlineSoon(theme.deadline) && (
-                          <Badge variant="destructive" className="text-xs">
+                          <Badge variant="destructive" className="text-xs text-slate-800">
                             締切間近！
                           </Badge>
                         )}
@@ -216,7 +216,7 @@ export default function VotingBoard() {
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                      <div className="flex flex-col gap-2 text-sm text-slate-600">
+                      <div className="flex flex-col gap-2 text-sm text-slate-800">
                         <div className="flex items-center gap-2">
                           <CalendarDays className="h-4 w-4" />
                           <span>作成: {formatDate(theme.created_at)}</span>
@@ -235,7 +235,7 @@ export default function VotingBoard() {
                         <Button
                           onClick={() => handleVote(theme.id)}
                           disabled={theme.is_closed}
-                          className="flex items-center gap-2"
+                          className={`flex items-center gap-2 ${!theme.is_closed ? 'bg-lime-400 hover:bg-lime-500 text-white' : ''}`}
                         >
                           <Vote className="h-4 w-4" />
                           投票する
@@ -244,7 +244,7 @@ export default function VotingBoard() {
                           <Button
                             variant="outline"
                             onClick={() => handleEdit(theme.id)}
-                            className="flex items-center gap-2"
+                            className="flex items-center gap-2 text-white"
                           >
                             <Edit className="h-4 w-4" />
                             編集
