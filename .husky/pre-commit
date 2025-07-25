@@ -1,1 +1,7 @@
 # npm test
+
+npm run check
+
+npm run fix
+
+git add .

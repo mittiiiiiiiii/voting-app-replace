@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "check": "biome check apps/web/src",
+    "fix": "biome format apps/web/src --write",
+    "lint": "eslint apps/web/src"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "biome": "^0.3.3",
     "husky": "^9.1.7"
-  }
+  },
+  "workspaces": [
+    "apps/web"
+  ]
 }
