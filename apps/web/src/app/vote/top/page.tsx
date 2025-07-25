@@ -110,13 +110,13 @@ export default function VotingBoard() {
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    })
+    const date = new Date(dateString)
+    const yyyy = date.getFullYear()
+    const mm = String(date.getMonth() + 1).padStart(2, '0')
+    const dd = String(date.getDate()).padStart(2, '0')
+    const hh = String(date.getHours()).padStart(2, '0')
+    const min = String(date.getMinutes()).padStart(2, '0')
+    return `${yyyy}-${mm}-${dd} ${hh}:${min}`
   }
 
   const isDeadlineSoon = (deadline: string) => {
@@ -169,7 +169,7 @@ export default function VotingBoard() {
                     <SelectTrigger className="w-48">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       <SelectItem value="created_desc" className="text-slate-800">作成日: 新しい順</SelectItem>
                       <SelectItem value="created_asc" className="text-slate-800">作成日: 古い順</SelectItem>
                       <SelectItem value="deadline_asc" className="text-slate-800">締切: 近い順</SelectItem>
