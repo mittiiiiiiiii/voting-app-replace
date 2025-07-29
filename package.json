@@ -16,5 +16,8 @@
   "workspaces": [
     "apps/web",
     "apps/api"
-  ]
+  ],
+  "dependencies": {
+    "pnpm": "^10.13.1"
+  }
 }

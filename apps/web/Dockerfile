@@ -4,11 +4,16 @@ RUN apt-get update -y && apt-get install -y openssl
 # 作業ディレクトリ設定
 WORKDIR /app
 
-# package.json, yarn.lock（またはpackage-lock.json）をコピー
-COPY package.json package-lock.json* ./
+RUN npm install -g pnpm
+
+# package.json, pnpm-lock.yaml をコピー
+COPY package.json pnpm-lock.yaml ./
+
+# pnpmインストール
+RUN corepack enable && corepack prepare pnpm@10.13.1 --activate
 
 # 依存インストール
-RUN npm install
+RUN pnpm install
 
 # アプリ全体をコピー
 COPY . .
@@ -17,4 +22,4 @@ COPY . .
 EXPOSE 3000
 
 # 本番起動（0.0.0.0でバインド）
-CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0"]
+CMD ["pnpm", "dev"]

@@ -1,12 +1,12 @@
 install:
 	@make build
 	@make up
-	@echo "10秒待機中..."
-	@sleep 10
+	@echo "5秒待機中..."
+	@sleep 5
 	@make migrate
 	@echo "✅ 環境構築完了"
 	@echo "API🚀 http://localhost:8000"
-	@echo "Web🖥️ http://localhost:3000"
+	@echo "Web💿 http://localhost:3000"
 
 build:
 	docker compose build web --no-cache
