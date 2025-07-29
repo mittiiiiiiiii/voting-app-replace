@@ -15,6 +15,7 @@
     "husky": "^9.1.7"
   },
   "workspaces": [
-    "apps/web"
+    "apps/web",
+    "apps/api"
   ]
 }
