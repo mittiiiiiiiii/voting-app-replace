@@ -159,10 +159,10 @@ export default function VotingBoard() {
                   <Button
                     variant={showMyThemes ? "default" : "outline"}
                     onClick={() => setShowMyThemes(!showMyThemes)}
-                    className={`flex items-center gap-2 ${showMyThemes ? 'text-slate-800' : 'text-white'}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded ${showMyThemes ? 'bg-black text-white' : 'bg-white text-black border border-black'}`}
                   >
-                    <User className="h-4 w-4" />
-                    自分の投稿
+                    <User className={`h-4 w-4 ${showMyThemes ? 'text-white' : 'text-black'}`} />
+                    <span className={showMyThemes ? 'text-white' : 'text-black'}>自分の投稿</span>
                   </Button>
 
                   <Select value={sortOption} onValueChange={(value) => setSortOption(value as typeof sortOption)}>
@@ -180,6 +180,18 @@ export default function VotingBoard() {
               </div>
             </CardContent>
           </Card>
+
+          {/* 新規投票作成ボタン */}
+          <div className="flex justify-center mb-8">
+            <Button
+              onClick={handleAddTask}
+              size="lg"
+              className="flex items-center gap-2 px-8 py-3 bg-green-600 hover:bg-green-700 text-white"
+            >
+              <Plus className="h-5 w-5" />
+              新しい投票を作成
+            </Button>
+          </div>
 
           {/* 投票テーマ一覧 */}
           <div className="grid gap-6 mb-8">
@@ -256,14 +268,6 @@ export default function VotingBoard() {
                 </Card>
               ))
             )}
-          </div>
-
-          {/* 新規投票作成ボタン */}
-          <div className="text-center">
-            <Button onClick={handleAddTask} size="lg" className="flex items-center gap-2 px-8 py-3">
-              <Plus className="h-5 w-5" />
-              新しい投票を作成
-            </Button>
           </div>
         </div>
       </div>
