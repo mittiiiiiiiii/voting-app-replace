@@ -110,10 +110,10 @@ export default function NewVotePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <FileText className="h-5 w-5" />
-                  基本情報
+                  <FileText className="h-5 w-5 text-black" />
+                  <span className="text-black">基本情報</span>
                 </CardTitle>
-                <CardDescription>投票のタイトルと説明を入力してください</CardDescription>
+                <CardDescription className="text-black">投票のタイトルと説明を入力してください</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
@@ -127,7 +127,7 @@ export default function NewVotePage() {
                       required: "タイトルは必須です",
                       minLength: { value: 3, message: "タイトルは3文字以上で入力してください" },
                     })}
-                    className={rhfErrors.title ? "border-red-500" : ""}
+                    className={`bg-white text-slate-800 ${rhfErrors.title ? 'border-red-500' : ''}`}
                   />
                   {rhfErrors.title && (
                     <div className="flex items-center gap-1 text-red-500 text-sm">
@@ -139,7 +139,7 @@ export default function NewVotePage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="description" className="text-sm font-medium">
+                  <Label htmlFor="description" className="text-sm font-medium text-slate-800">
                     説明（任意）
                   </Label>
                   <Textarea
@@ -149,7 +149,7 @@ export default function NewVotePage() {
                     {...register("description", {
                       maxLength: { value: 500, message: "説明は500文字以内で入力してください" },
                     })}
-                    className={rhfErrors.description ? "border-red-500" : ""}
+                    className={`bg-white text-slate-800 ${rhfErrors.description ? 'border-red-500' : ''}`}
                   />
                   {rhfErrors.description && (
                     <div className="flex items-center gap-1 text-red-500 text-sm">
@@ -166,10 +166,10 @@ export default function NewVotePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5" />
-                  締切設定
+                  <Calendar className="h-5 w-5 text-black" />
+                  <span className="text-black">締切設定</span>
                 </CardTitle>
-                <CardDescription>投票の締切日時を設定してください（任意）</CardDescription>
+                <CardDescription className="text-black">投票の締切日時を設定してください（任意）</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -181,6 +181,7 @@ export default function NewVotePage() {
                     type="datetime-local"
                     {...register("deadline")}
                     min={new Date().toISOString().slice(0, 16)}
+                    className="bg-white text-slate-800"
                   />
                   <p className="text-xs text-slate-500">締切を設定しない場合、手動で投票を終了するまで継続されます</p>
                 </div>
@@ -191,13 +192,13 @@ export default function NewVotePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <List className="h-5 w-5" />
-                  選択肢
+                  <List className="h-5 w-5 text-black" />
+                  <span className="text-black">選択肢</span>
                   <Badge variant="secondary" className="ml-2">
                     {validChoicesCount}個
                   </Badge>
                 </CardTitle>
-                <CardDescription>投票の選択肢を追加してください（最低2つ必要）</CardDescription>
+                <CardDescription className="text-black">投票の選択肢を追加してください（最低2つ必要）</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {errors.choices && (
@@ -217,7 +218,7 @@ export default function NewVotePage() {
                         placeholder={`選択肢 ${idx + 1}`}
                         value={choice.text}
                         onChange={(e) => updateChoiceText(choice.id, e.target.value)}
-                        className="flex-1"
+                        className="flex-1 bg-white text-slate-800"
                       />
                       <Button
                         type="button"
@@ -255,7 +256,7 @@ export default function NewVotePage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting || validChoicesCount < 2}
-                    className="flex items-center gap-2 px-8"
+                    className="flex items-center gap-2 px-8 bg-blue-600 text-white hover:bg-blue-700"
                   >
                     <Save className="h-4 w-4" />
                     {isSubmitting ? "作成中..." : "投票を作成"}
