@@ -1,7 +1,7 @@
 # npm test
 
-npm run check
+pnpm check
 
-npm run fix
+pnpm fix
 
 git add .
